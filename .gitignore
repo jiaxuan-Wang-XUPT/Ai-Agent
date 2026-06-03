@@ -1,0 +1,45 @@
+noknowe/HELP.md
+target
+noknowe/.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### CUSTOM ###
+application-local.yaml
+tmp
+dist
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+/src/main/java/com/skye/aiagentbackend/constant/FileConstant.java
+src/main/resources/mcp-servers.json
+src/main/java/com/skye/skyeimagesearchmcp/tools/ImageSearchTool.java
+src/main/resources/application.yaml
+
+node_modules
