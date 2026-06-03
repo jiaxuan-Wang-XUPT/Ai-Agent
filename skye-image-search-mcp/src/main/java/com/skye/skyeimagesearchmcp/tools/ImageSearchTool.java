@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class ImageSearchTool {
 
     // 替换为你的 Pexels API 密钥（需从官网申请）
-    private static final String API_KEY = "PPZEUzlDw8jNCETMkYXF5f4MwWF9ibz9siMDfr1CBFdtILQ6N6bmShRR";
+    private static final String API_KEY = "your api key";
 
     // Pexels 常规搜索接口（请以文档为准）
     private static final String API_URL = "https://api.pexels.com/v1/search";
