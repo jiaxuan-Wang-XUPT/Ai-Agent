@@ -27,13 +27,13 @@ const messageListRef = ref(null)
 let abortController = null
 
 watch(
-  () => messages.value.length,
-  async () => {
-    await nextTick()
-    if (messageListRef.value) {
-      messageListRef.value.scrollTop = messageListRef.value.scrollHeight
-    }
-  },
+    () => messages.value.length,
+    async () => {
+      await nextTick()
+      if (messageListRef.value) {
+        messageListRef.value.scrollTop = messageListRef.value.scrollHeight
+      }
+    },
 )
 
 async function handleSend() {
@@ -68,8 +68,8 @@ async function handleSend() {
   } catch (error) {
     if (error.name !== 'AbortError') {
       aiMessage.content += aiMessage.content
-        ? `\n\n[錯誤] ${error.message}`
-        : `[錯誤] ${error.message}`
+          ? `\n\n[错误] ${error.message}`
+          : `[错误] ${error.message}`
     }
   } finally {
     loading.value = false
@@ -98,21 +98,21 @@ function handleStop() {
         <div>
           <h1>{{ title }}</h1>
           <p v-if="subtitle" class="subtitle">{{ subtitle }}</p>
-          <p v-if="chatId" class="chat-id">會話 ID：{{ chatId }}</p>
+          <p v-if="chatId" class="chat-id">会话 ID：{{ chatId }}</p>
         </div>
       </div>
     </header>
 
     <main ref="messageListRef" class="message-list">
       <div v-if="messages.length === 0" class="empty-hint">
-        開始對話吧，輸入問題後按 Enter 或點擊發送。
+        开始对话吧，输入问题后按 Enter 或点击发送。
       </div>
 
       <div
-        v-for="msg in messages"
-        :key="msg.id"
-        class="message-row"
-        :class="msg.role"
+          v-for="msg in messages"
+          :key="msg.id"
+          class="message-row"
+          :class="msg.role"
       >
         <div class="avatar">{{ msg.role === 'user' ? '我' : 'AI' }}</div>
         <div class="bubble">
@@ -123,27 +123,27 @@ function handleStop() {
 
     <footer class="input-area">
       <textarea
-        v-model="inputText"
-        class="input-box"
-        placeholder="輸入訊息，Enter 發送，Shift+Enter 換行"
-        rows="3"
-        :disabled="loading"
-        @keydown="handleKeydown"
+          v-model="inputText"
+          class="input-box"
+          placeholder="输入信息，Enter 发送，Shift+Enter 换行"
+          rows="3"
+          :disabled="loading"
+          @keydown="handleKeydown"
       />
       <div class="actions">
         <button
-          v-if="loading"
-          type="button"
-          class="btn btn-secondary"
-          @click="handleStop"
+            v-if="loading"
+            type="button"
+            class="btn btn-secondary"
+            @click="handleStop"
         >
           停止
         </button>
         <button
-          type="button"
-          class="btn btn-primary"
-          :disabled="loading || !inputText.trim()"
-          @click="handleSend"
+            type="button"
+            class="btn btn-primary"
+            :disabled="loading || !inputText.trim()"
+            @click="handleSend"
         >
           發送
         </button>
@@ -156,9 +156,10 @@ function handleStop() {
 .chat-room {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  max-width: 960px;
-  margin: 0 auto;
+  height: 100%;
+  /* 移除 max-width 限制，让聊天区域填满父容器 */
+  /* max-width: 960px;  (已删除) */
+  /* margin: 0 auto;    (已删除) */
   background: #f5f7fb;
 }
 
@@ -225,7 +226,8 @@ function handleStop() {
 .message-row {
   display: flex;
   gap: 10px;
-  max-width: 85%;
+  /* 将最大宽度从 85% 提高到 95%，让消息占更宽的区域 */
+  max-width: 95%;
 }
 
 .message-row.user {
@@ -264,6 +266,7 @@ function handleStop() {
   border-radius: 12px;
   line-height: 1.6;
   word-break: break-word;
+  flex: 1; /* 让气泡自动拉伸，充分利用可用空间 */
 }
 
 .message-row.user .bubble {
